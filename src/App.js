@@ -1,21 +1,21 @@
 import logo from './logo.svg';
 import './App.css';
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import HomeLayout from './HomeLayout';
+import Movie from './components/Movie';
 
 function App() {
     return (
-        <div className="App">
-            <header className="App-header">
-                <img src={logo} className="App-logo" alt="logo" />
-                <p>상근이 싸대기 마렵네;;;</p>
-                <a
-                    className="App-link"
-                    href="https://reactjs.org"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >
-                    Learn React
-                </a>
-            </header>
+        <div className="root">
+            <Router>
+                <HomeLayout>
+                    <Routes>
+                        <Route exact path="/movies" element={<Movie />} />
+                        <Route exact path="/theaters"></Route>
+                    </Routes>
+                </HomeLayout>
+            </Router>
         </div>
     );
 }
