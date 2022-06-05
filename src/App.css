@@ -20,6 +20,13 @@ ul {
 a {
     text-decoration: none;
 }
+
+.root {
+    position: relative;
+    width: 100%;
+    min-width: 1040px;
+}
+
 .draggable {
     -webkit-user-select: none;
     -moz-user-select: none;
@@ -39,8 +46,10 @@ a {
     background-color: #fff;
     border-bottom: 1px solid #eee;
 }
+
 .header_content .contents {
-    display: inline-flex;
+    display: flex;
+    align-items: baseline;
     justify-content: space-evenly;
     padding: 30px 6px 25px 5px;
     background-color: #fff;
@@ -146,8 +155,10 @@ h3 {
 .nav_menu {
     display: inline-flex;
 }
-.contents {
-    display: inline-flex;
+
+.nav .contents {
+    margin: 0 auto;
+    width: 980px;
 }
 ul {
     padding: 0px;
@@ -166,9 +177,223 @@ ul {
 .sidenav {
     display: flex;
 }
-.contents {
+
+#container {
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+}
+
+.baner {
+    position: relative;
+    height: 498px;
+    background-color: #000;
+    border-top: 2px solid #fb4357;
+}
+
+.baner .contents .video_wrap {
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.baner .contents .video_wrap::before {
+    content: '';
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    background-image: linear-gradient(
+        to right,
+        #000 0%,
+        rgba(0, 0, 0, 0.25) 25%,
+        rgba(0, 0, 0, 0) 50%,
+        rgba(0, 0, 0, 0.25) 75%,
+        #000 100%
+    );
+    z-index: 2;
+}
+
+.movieChartScreen {
+    clear: none;
+    float: none;
+    background-image: linear-gradient(to bottom, rgba(255, 255, 255, 1), rgba(232, 232, 232, 0.37));
+}
+
+.movieChartScreen .contents {
+    overflow: hidden;
+    padding: 50px 30px 60px;
+}
+
+#container .contents {
+    width: 980px;
+    height: 100%;
+    margin: 0 auto;
+}
+
+#container .contents .movieChart_btn {
+    width: 100%;
     display: flex;
-    align-items: baseline;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.movieChartScreen .contents .movieChart_btn h3 {
+    height: auto;
+    margin: 0;
+    line-height: 1em;
+}
+
+.movieChartScreen .contents .movieChart_btn h3 a {
+    font-weight: 700;
+    font-size: 24px;
+    color: #222;
+    line-height: 1.423em;
+}
+
+.movieChart_btn .allViewBtn {
+    padding: 4px 32px 4px 15px;
+    font-size: 14px;
+    color: #222;
+    background: transparent url(https://img.cgv.co.kr/R2014/images/common/ico/arrowR_8x13.png)
+        calc(100% - 7px) center/8px 13px scroll no-repeat;
+    border: 1px solid #e2e2e2;
+    border-radius: 15px;
+    box-shadow: 1px 1px 1px 0 rgb(0 0 0 / 5%);
+}
+
+.movieChartList {
+    display: block;
+}
+
+.movieChartList_wrap {
+    display: flex;
+}
+
+.movieChartList .movieChart_wrap {
+    width: 170.4px;
+    margin-right: 32px;
+}
+
+.movieChartList .movieChart_wrap .movie_img {
+    position: relative;
+    overflow: hidden;
+    width: 170px;
+    height: 234px;
+    border-radius: 10px;
+}
+
+.movieChartList .movieChart_wrap .movie_img img {
+    width: 100%;
+    height: 100%;
+}
+
+.movieChartList .movieChart_wrap .movieInfo_wrap {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.movieChartList .movieChart_wrap .movieInfo_wrap .movieName {
+    display: block;
+    flex-basis: 100%;
+    font-size: 18px;
+    margin-top: 14px;
+    color: #222;
+    text-align: center;
+    white-space: nowrap;
+}
+
+.movieChartList .movieChart_wrap .movieInfo_wrap span {
+    display: block;
+    font-size: 14px;
+    margin-top: 14px;
+    color: #444;
+    text-align: center;
+    white-space: nowrap;
+}
+
+.movieChartList .movieChart_wrap .movieInfo_wrap span img {
+    width: 16px;
+    height: 16px;
+}
+
+.movieChartList .movieChart_wrap .movieInfo_wrap span ~ span {
+    position: relative;
+    padding-left: 16px;
+}
+
+.movieChartList .movieChart_wrap .movieInfo_wrap span ~ span::before {
+    content: '';
+    display: block;
+    position: absolute;
+    width: 1px;
+    height: 10px;
+    left: 6px;
+    top: 50%;
+    margin-top: -5px;
+    background-color: #ededed;
+}
+
+#container .event_wrap {
+    padding: 60px 0 6px;
+}
+
+.event_wrap .event_title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.event_wrap .event_title h3 {
+    font-weight: 700;
+    font-size: 26px;
+    height: auto;
+    color: #222;
+    margin: 0;
+}
+
+.event_wrap .event_title .allViewBtn {
+    padding: 4px 32px 4px 15px;
+    font-size: 14px;
+    color: #222;
+    background: transparent url(https://img.cgv.co.kr/R2014/images/common/ico/arrowR_8x13.png)
+        calc(100% - 7px) center/8px 13px scroll no-repeat;
+    border: 1px solid #e2e2e2;
+    border-radius: 15px;
+    box-shadow: 1px 1px 1px 0 rgb(0 0 0 / 5%);
+}
+
+.event_wrap .event_list_wrap {
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+}
+
+.event_wrap .event_list_wrap .event_list .event_swiper {
+    display: flex;
+}
+
+.event_wrap .event_list_wrap .event_list .event_swiper .event {
+    width: 310.667px;
+}
+
+.event_wrap .event_list_wrap .event_list .event_swiper .event a {
+    display: block;
+}
+
+.event_wrap .event_list_wrap .event_list .event_swiper .event .img_wrap {
+    overflow: hidden;
+    width: 310px;
+    height: 207px;
+    border-radius: 10px;
+}
+
+.event_wrap .event_list_wrap .event_list .event_swiper .event .img_wrap img {
+    width: 100%;
+    height: auto;
 }
 
 @media screen and (max-width: 1000px) {

@@ -4,23 +4,22 @@ import './App.css';
 
 function HomeLayout(props) {
     const { children } = props;
-
     return (
         <div>
             <div className="header">
                 <div className="header_content">
                     <div className="contents">
-                        <span className="More" onclick="openNav()">
+                        <span className="More" onClick="openNav()">
                             &#9776;
                         </span>
                         <div className="cgvImeage">
                             <h1 onclick="">
-                                <a href="/Home.html">
+                                <Link to="/">
                                     <img
                                         src="https://img.cgv.co.kr/R2014/images/common/logo/logoRed.png"
                                         alt="CGV"
                                     />
-                                </a>
+                                </Link>
                                 <span>CULTUREPLEX</span>
                             </h1>
                         </div>
@@ -38,7 +37,7 @@ function HomeLayout(props) {
                                 <a
                                     href="javascript:void(0)"
                                     className="closebtn"
-                                    onclick="closeNav()"
+                                    onClick="closeNav()"
                                 >
                                     &times;
                                 </a>
@@ -91,9 +90,9 @@ function HomeLayout(props) {
                                 </Link>
                             </li>
                             <li>
-                                <h3>
-                                    <a href="/Cinema.html">극장</a>
-                                </h3>
+                                <Link to="/theaters">
+                                    <h3>극장</h3>
+                                </Link>
                             </li>
                             <li>
                                 <Link to="/movieDetail">
