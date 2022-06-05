@@ -43,16 +43,16 @@ function HomeLayout(props) {
                                     &times;
                                 </a>
                                 <li>
-                                    <a href="/Login.html">
+                                    <Link to="/login">
                                         <img
                                             src="https://img.cgv.co.kr/R2014/images/common/ico/loginPassword.png"
                                             alt="로그인"
                                         />
                                         <span>로그인</span>
-                                    </a>
+                                    </Link>
                                 </li>
                                 <li>
-                                    <a href="#">
+                                    <a href="/sign">
                                         <img
                                             src="https://img.cgv.co.kr/R2014/images/common/ico/loginJoin.png"
                                             alt="회원가입"
@@ -61,7 +61,7 @@ function HomeLayout(props) {
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="/MyPage.html">
+                                    <a href="/mypage">
                                         <img
                                             src="https://img.cgv.co.kr/R2014/images/common/ico/loginMember.png"
                                             alt="MY CGV"
@@ -94,6 +94,11 @@ function HomeLayout(props) {
                                 <h3>
                                     <a href="/Cinema.html">극장</a>
                                 </h3>
+                            </li>
+                            <li>
+                                <Link to="/movieDetail">
+                                    <h3>영화상세페이지</h3>
+                                </Link>
                             </li>
                         </ul>
                     </div>
