@@ -21,11 +21,6 @@ function Login() {
     const onSubmit = (e) => {
         // submit 이벤트는 브라우저에서 새로고침을 발생
         // 이를 방지하기 위해 이 함수를 호출
-        test();
-        e.preventDefault();
-    };
-
-    async function test() {
         axios
             .post('http://localhost:8080/login/member', {
                 id: id,
@@ -33,11 +28,11 @@ function Login() {
             })
             .then((res) => {
                 console.log(res);
-                setPosts(res.data);
                 setCheck(true);
             })
             .catch((err) => console.log(err));
-    }
+        e.preventDefault();
+    };
 
     return (
         <div class="box-login">
