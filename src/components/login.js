@@ -1,9 +1,9 @@
 import '../css/Login.css';
-import { useState, useEffect, useCallback } from 'react';
+import { useState } from 'react';
 import axios from 'axios';
-import { Route, Navigate } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
+
 function Login() {
-    const [posts, setPosts] = useState(false);
     const [id, setId] = useState('');
     const [password, setPassword] = useState('');
     const [check, setCheck] = useState(false);
