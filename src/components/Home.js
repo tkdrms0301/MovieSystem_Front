@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
-
+import movieData from './movie.json';
+import '../css/Home.css';
 const event = [
     {
         title: 'All-Day 영스엑런칭 이벤트',
@@ -25,6 +26,33 @@ const event = [
 ];
 
 export default function Home() {
+    const [movielocation, setMovieLocation] = useState(0);
+    const [eventLocation, setEventLocation] = useState(0);
+
+    const [visiable, setVisible] = useState(true);
+    const [eventVisiable, setEventVisible] = useState(true);
+
+    const changeMovieWrap = () => {
+        if (visiable) setMovieLocation(movielocation - 1024);
+        else setMovieLocation(movielocation + 1024);
+        setVisible(!visiable);
+    };
+
+    const changeEventWrap = () => {
+        if (eventVisiable) setEventLocation(eventLocation - 334);
+        else setEventLocation(eventLocation + 334);
+        setEventVisible(!eventVisiable);
+    };
+
+    useEffect(() => {
+        // 처음 실행될 때 무조건 한 번 실행 -> 이후 changeEventWrap이 호출되면 다시 실행?
+        let timer = setInterval(() => {
+            changeEventWrap();
+        }, 3000);
+
+        return () => clearInterval(timer);
+    }, [changeEventWrap]);
+
     return (
         <div id="container">
             <div className="baner">
@@ -44,7 +72,7 @@ export default function Home() {
                     <div className="movieChart_btn">
                         <div className="tabBtn">
                             <h3>
-                                <a>무비차트</a>
+                                <a href="#none">무비차트</a>
                             </h3>
                         </div>
                         <Link to="/movies" className="allViewBtn">
@@ -52,91 +80,50 @@ export default function Home() {
                         </Link>
                     </div>
                     <div className="movieChartList">
-                        <div className="movieChartList_wrap">
-                            <div className="movieChart_wrap">
-                                <div className="movie_img">
-                                    <img
-                                        className="img"
-                                        src="https://img.cgv.co.kr/Movie/Thumbnail/Poster/000085/85689/85689_320.jpg"
-                                        alt="쥬라기 월드-도미니언"
-                                    />
-                                </div>
-                                <div className="movieInfo_wrap">
-                                    <strong className="movieName">쥬라기 월드-도미니언</strong>
-                                    <span>
-                                        <img
-                                            src="https://img.cgv.co.kr/R2014/images/common/egg/eggGoldenegggreat.png"
-                                            alt="Golden Egg graet"
-                                        />
-                                        85%
-                                    </span>
-                                    <span>예매율 39.2%</span>
-                                </div>
-                            </div>
-
-                            <div className="movieChart_wrap">
-                                <div className="movie_img">
-                                    <img
-                                        className="img"
-                                        src="https://img.cgv.co.kr/Movie/Thumbnail/Poster/000085/85813/85813_320.jpg"
-                                        alt="범죄도시 2"
-                                    />
-                                </div>
-                                <div className="movieInfo_wrap">
-                                    <strong className="movieName">범죄도시 2</strong>
-                                    <span>
-                                        <img
-                                            src="https://img.cgv.co.kr/R2014/images/common/egg/eggGoldenegggreat.png"
-                                            alt="Golden Egg graet"
-                                        />
-                                        99%
-                                    </span>
-                                    <span>예매율 32.8%</span>
-                                </div>
-                            </div>
-
-                            <div className="movieChart_wrap">
-                                <div className="movie_img">
-                                    <img
-                                        className="img"
-                                        src="https://img.cgv.co.kr/Movie/Thumbnail/Poster/000085/85689/85689_320.jpg"
-                                        alt="쥬라기 월드-도미니언"
-                                    />
-                                </div>
-                                <div className="movieInfo_wrap">
-                                    <strong className="movieName">쥬라기 월드-도미니언</strong>
-                                    <span>
-                                        <img
-                                            src="https://img.cgv.co.kr/R2014/images/common/egg/eggGoldenegggreat.png"
-                                            alt="Golden Egg graet"
-                                        />
-                                        85%
-                                    </span>
-                                    <span>예매율 39.2%</span>
-                                </div>
-                            </div>
-
-                            <div className="movieChart_wrap">
-                                <div className="movie_img">
-                                    <img
-                                        className="img"
-                                        src="https://img.cgv.co.kr/Movie/Thumbnail/Poster/000085/85689/85689_320.jpg"
-                                        alt="쥬라기 월드-도미니언"
-                                    />
-                                </div>
-                                <div className="movieInfo_wrap">
-                                    <strong className="movieName">쥬라기 월드-도미니언</strong>
-                                    <span>
-                                        <img
-                                            src="https://img.cgv.co.kr/R2014/images/common/egg/eggGoldenegggreat.png"
-                                            alt="Golden Egg graet"
-                                        />
-                                        85%
-                                    </span>
-                                    <span>예매율 39.2%</span>
-                                </div>
-                            </div>
+                        <div
+                            className="movieChartList_wrap"
+                            style={{
+                                transform: `translate3d(${movielocation}px, 0px, 0px)`,
+                            }}
+                        >
+                            {movieData.map((movie) => {
+                                return (
+                                    <div className="movieChart_wrap">
+                                        <div className="movie_img">
+                                            <img
+                                                className="img"
+                                                src={movie.url}
+                                                alt={movie.title}
+                                            />
+                                            <div class="movieBtn_wrap">
+                                                <a href="#none" className="movieDetailBtn">
+                                                    상세보기
+                                                </a>
+                                                <a href="#none" className="movieTicketingBtn">
+                                                    예매하기
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div className="movieInfo_wrap">
+                                            <strong className="movieName">{movie.title}</strong>
+                                            <span>
+                                                <img
+                                                    src="https://img.cgv.co.kr/R2014/images/common/egg/eggGoldenegggreat.png"
+                                                    alt="Golden Egg graet"
+                                                />
+                                                {movie.star}
+                                            </span>
+                                            <span>{movie.rate}</span>
+                                        </div>
+                                    </div>
+                                );
+                            })}
                         </div>
+                        {visiable ? (
+                            <div className="nextBtn" onClick={() => changeMovieWrap()} />
+                        ) : (
+                            <div className="prevBtn" onClick={() => changeMovieWrap()} />
+                        )}
                     </div>
                 </div>
             </div>
@@ -151,13 +138,19 @@ export default function Home() {
                             전체보기
                         </a>
                     </div>
-                    <div className="event_list_wrap">
-                        <div className="event_list">
-                            <div className="event_swiper">
+                    <div className="event_list">
+                        <div className="event_list_box">
+                            <div
+                                className="event_list_wrap"
+                                style={{
+                                    transform: `translate3d(${eventLocation}px, 0px, 0px)`,
+                                }}
+                            >
                                 {event.map((e) => {
                                     return (
                                         <div className="event">
-                                            <a href="#">
+                                            <a href="#none">
+                                                {/* 링크 걸어줘야 함 */}
                                                 <div className="img_wrap">
                                                     <img src={e.url} alt={e.title} />
                                                 </div>
@@ -168,6 +161,11 @@ export default function Home() {
                                     );
                                 })}
                             </div>
+                            {eventVisiable ? (
+                                <div className="nextBtn" onClick={() => changeEventWrap()} />
+                            ) : (
+                                <div className="prevBtn" onClick={() => changeEventWrap()} />
+                            )}
                         </div>
                     </div>
                 </div>

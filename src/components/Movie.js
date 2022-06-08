@@ -1,6 +1,6 @@
 import React from 'react';
 import '../css/Movie.css';
-export default function Movie(props) {
+export default function (props) {
     return (
         <div className="body">
             <div className="movieChart">
