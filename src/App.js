@@ -8,6 +8,7 @@ import Login from './components/Login';
 import Sign from './components/Sign';
 import MyPage from './components/MyPage';
 import MovieDetail from './components/MovieDetail';
+import MovieSchedule from './components/MovieSchedule';
 
 function App() {
     return (
@@ -17,7 +18,7 @@ function App() {
                     <Routes>
                         <Route exact path="/" element={<Home />} />
                         <Route exact path="/movies" element={<Movie />} />
-                        <Route exact path="/theaters"></Route>
+                        <Route exact path="/theaters" element={<MovieSchedule />}></Route>
                         <Route exact path="/login" element={<Login />} />
                         <Route exact path="/sign" element={<Sign />} />
                         <Route exact path="/mypage" element={<MyPage />} />
