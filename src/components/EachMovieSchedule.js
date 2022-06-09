@@ -1,6 +1,5 @@
 import Schedule from './Schedule';
 
-
 function EachMovieSchedule({ movieSchedule }) {
     const strDate = String(movieSchedule[0].movie.openingDate);
     const date = strDate.split('T');
