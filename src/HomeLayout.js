@@ -99,6 +99,16 @@ function HomeLayout(props) {
                                     <h3>영화상세페이지</h3>
                                 </Link>
                             </li>
+                            <li>
+                                <Link to="/ticketing">
+                                    <h3>예매</h3>
+                                </Link>
+                            </li>
+                            <li>
+                                <Link to="/ticketingSeat">
+                                    <h3>좌석 예매</h3>
+                                </Link>
+                            </li>
                         </ul>
                     </div>
                 </div>

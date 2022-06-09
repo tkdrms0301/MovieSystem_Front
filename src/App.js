@@ -9,6 +9,8 @@ import Sign from './components/Sign';
 import MyPage from './components/MyPage';
 import MovieDetail from './components/MovieDetail';
 import MovieSchedule from './components/MovieSchedule';
+import Ticketing from './components/Ticketing';
+import TicketingSeat from './components/TicketingSeat';
 
 function App() {
     return (
@@ -23,6 +25,8 @@ function App() {
                         <Route exact path="/sign" element={<Sign />} />
                         <Route exact path="/mypage" element={<MyPage />} />
                         <Route exact path="/moviedetail" element={<MovieDetail />} />
+                        <Route exact path="/ticketing" element={<Ticketing />} />
+                        <Route exact path="/ticketingSeat" element={<TicketingSeat />} />
                     </Routes>
                 </HomeLayout>
             </Router>

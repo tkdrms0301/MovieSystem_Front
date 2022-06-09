@@ -20,10 +20,11 @@ input {
 .login-form {
     display: block;
     text-align: center;
-    margin: auto;
+    margin: 0 auto;
     margin-top: 20px;
 }
 #submit {
+    margin: 0 auto;
     background-color: #fb4357;
     color: white;
     font-weight: bold;
