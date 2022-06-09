@@ -2,6 +2,14 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import './App.css';
 
+function closeNav() {
+    return (document.getElementById('mySidenav').style.width = '0px');
+}
+
+function openNav() {
+    return (document.getElementById('mySidenav').style.width = '200px');
+}
+
 function HomeLayout(props) {
     const { children } = props;
     return (
@@ -9,7 +17,7 @@ function HomeLayout(props) {
             <div className="header">
                 <div className="header_content">
                     <div className="contents">
-                        <span className="More" onclick="openNav()">
+                        <span className="More" onClick={() => openNav()}>
                             &#9776;
                         </span>
                         <div className="cgvImeage">
@@ -37,7 +45,7 @@ function HomeLayout(props) {
                                 <a
                                     href="javascript:void(0)"
                                     className="closebtn"
-                                    onclick="closeNav()"
+                                    onClick={() => closeNav()}
                                 >
                                     &times;
                                 </a>
@@ -92,11 +100,6 @@ function HomeLayout(props) {
                             <li>
                                 <Link to="/theaters">
                                     <h3>극장</h3>
-                                </Link>
-                            </li>
-                            <li>
-                                <Link to="/movieDetail">
-                                    <h3>영화상세페이지</h3>
                                 </Link>
                             </li>
                             <li>

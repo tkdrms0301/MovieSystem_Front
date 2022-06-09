@@ -1,9 +1,31 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import axios from 'axios';
 import '../css/MovieDetail.css';
+import { useLocation } from 'react-router-dom';
 
 function MovieDetail(props) {
     //const movie_id
+    const search = useLocation().search;
+    const movie = new URLSearchParams(search).get('movie');
+    const [check, setCheck] = useState(false);
+
+    const [movieData, setMovieData] = useState('');
+
+    function startMovie() {
+        axios
+            .get('http://localhost:8080/movieDetail/' + movie)
+            .then((res) => {
+                setMovieData(res.data);
+                setCheck(true);
+            })
+            .catch((err) => console.log(err));
+    }
+
+    useEffect(() => {
+        console.log(typeof movie);
+        startMovie();
+    }, []);
+
     const [grade, setGrade] = useState('');
     const [comment, setComment] = useState('');
 
@@ -17,64 +39,64 @@ function MovieDetail(props) {
         console.log(event.target.value);
     };
 
-    const onSubmit = (event) => {
-        axios
-            .post('http://localhost:8080/commentPost', {
-                //object_movie_id
-                grade: grade,
-                comment: comment,
-            })
-            .then((res) => {
-                console.log(res);
-            })
-            .catch((err) => console.log(err));
-        event.preventDefault();
-    };
+    // const onSubmit = (event) => {
+    //     axios
+    //         .post('http://localhost:8080/commentPost', {
+    //             //object_movie_id
+    //             grade: grade,
+    //             comment: comment,
+    //         })
+    //         .then((res) => {
+    //             console.log(res);
+    //         })
+    //         .catch((err) => console.log(err));
+    //     event.preventDefault();
+    // };
 
     return (
         <div class="sect-base-movie">
-            <div class="movie-box">
-                <div class="box-image">
-                    <img
-                        class="img"
-                        src="https://img.cgv.co.kr/Movie/Thumbnail/Poster/000085/85689/85689_320.jpg"
-                        alt="쥬라기 월드-도미니언 포스터 새창"
-                        onerror="errorImage(this)"
-                    />
+            {check ? (
+                <div class="movie-box">
+                    <div class="box-image">
+                        <img
+                            class="img"
+                            src={movieData.movies.url}
+                            alt=""
+                            onerror="errorImage(this)"
+                        />
+                    </div>
+                    <div class="box-contents">
+                        <div class="title">
+                            <span>{movieData.movies.title}</span>
+                            <span class="round">현재상영중</span>
+                        </div>
+                        <div class="score">
+                            <span>예매율</span>
+                            <span>{movieData.movies.ticketingRate}%</span>
+                            <span>평점</span>
+                            <span>{movieData.movies.averageGrade}</span>
+                        </div>
+                        <div class="info">
+                            <span>장르 : </span>
+                            <span>{movieData.movies.genre}</span>
+                            <span>기본 : </span>
+                            <span>{movieData.movies.screenGrade}세 이상</span>
+                            <span>,</span>
+                            <span>{movieData.movies.runtime}</span>
+                        </div>
+                        <div class="open">
+                            <span>개봉 : </span>
+                            <span>{movieData.movies.openingDate}</span>
+                        </div>
+                        <span class="like">
+                            <a class="link-reservation" href="#">
+                                예매
+                            </a>
+                        </span>
+                    </div>
                 </div>
-                <div class="box-contents">
-                    <div class="title">
-                        <span>쥬라기 월드-도미니언</span>
-                        <span class="round">현재상영중</span>
-                    </div>
-                    <div class="score">
-                        <span>예매율</span>
-                        <span>39.2%</span>
-                        <span>평점</span>
-                        <span>5.0</span>
-                    </div>
-                    <div class="info">
-                        <span>장르 : </span>
-                        <span>액션</span>
-                        <span>기본 : </span>
-                        <span>12세 이상</span>
-                        <span>,</span>
-                        <span>147분</span>
-                    </div>
-                    <div class="open">
-                        <span>개봉 : </span>
-                        <span>2022.06.01</span>
-                    </div>
-                    <span class="like">
-                        <a
-                            class="link-reservation"
-                            href="/ticket/?MOVIE_CD=20029663&amp;MOVIE_CD_GROUP=20029075"
-                        >
-                            예매
-                        </a>
-                    </span>
-                </div>
-            </div>
+            ) : null}
+
             <div class="real-rating">
                 <div class="wrap_btn">
                     <a class="link-gradewrite" href="#">
@@ -83,13 +105,8 @@ function MovieDetail(props) {
                 </div>
             </div>
             <div class="write-comment">
-                <form action="#" class="comment-form" onSubmit={onSubmit}>
-                    <select
-                        name="grade"
-                        class="comment-select"
-                        value={grade}
-                        onChange={onChangeGrade}
-                    >
+                <form action="#" class="comment-form">
+                    <select name="grade" class="comment-select" value="" onChange="">
                         <option value="">평점 선택</option>
                         <option value="5">5</option>
                         <option value="4">4</option>
@@ -101,8 +118,8 @@ function MovieDetail(props) {
                         class="comment-input"
                         type="text"
                         placeholder="댓글을 작성해주세요."
-                        value={comment}
-                        onChange={onChangeComment}
+                        value=""
+                        onChange=""
                     ></input>
                     <input class="comment-submit" type="submit" value="댓글 작성" />
                 </form>

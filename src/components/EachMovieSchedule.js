@@ -1,14 +1,15 @@
 import Schedule from './Schedule';
-import Moment from 'moment';
 
 function EachMovieSchedule({ movieSchedule }) {
+    const strDate = String(movieSchedule[0].movie.openingDate);
+    const date = strDate.split('T');
     return (
         <li>
             <div class="col-times">
                 <div class="info-movie">
                     <span class={'ico-grade grade-' + movieSchedule[0].movie.screenGrade}>
                         {movieSchedule[0].movie.screenGrade}세 이상
-                    </span>{' '}
+                    </span>
                     <a href="/movies/detail-view/?midx=85689" target="_parent">
                         <strong>{movieSchedule[0].movie.title}</strong>
                     </a>
@@ -16,7 +17,7 @@ function EachMovieSchedule({ movieSchedule }) {
                         <em>상영중</em>
                     </span>
                     <i>{movieSchedule[0].movie.genre}/</i> <i>{movieSchedule[0].movie.runtime}/</i>{' '}
-                    <i>{Moment(movieSchedule[0].movie.openingDate).format('YYYY.MM.DD')} 개봉</i>
+                    <i>{date[0].replaceAll('-', '.')} 개봉</i>
                 </div>
 
                 <div class="type-hall">

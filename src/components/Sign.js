@@ -37,7 +37,12 @@ function Sign() {
                         setCheck(true);
                     }
                 })
-                .catch((err) => console.log(err));
+                .catch((err) => {
+                    console.log(err);
+                    if (err.response.status === 400) {
+                        alert('회원가입 실패!');
+                    }
+                });
         } else {
             alert('잘못된 비밀번호 확인입니다.');
             setPassword('');
