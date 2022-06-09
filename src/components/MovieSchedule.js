@@ -1,14 +1,12 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import '../css/MovieSchedule.css';
-import Moment from 'moment';
 
 import EachMovieSchedule from './EachMovieSchedule';
 export default function MovieSchedule(props) {
     const [movieSchedulesFirst, setMovieSchedulesFirst] = useState(null);
     const [movieSchedulesSecond, setMovieSchedulesSecond] = useState(null);
 
-    Moment.locale('en');
     useEffect(() => {
         axios
             .get('http://localhost:8080/movie1')
