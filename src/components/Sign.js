@@ -35,11 +35,14 @@ function Sign() {
                     if (res.status === 200) {
                         alert('회원가입 성공!');
                         setCheck(true);
-                    } else {
-                        alert('bad');
                     }
                 })
-                .catch((err) => console.log(err));
+                .catch((err) => {
+                    console.log(err);
+                    if (err.response.status === 400) {
+                        alert('회원가입 실패!');
+                    }
+                });
         } else {
             alert('잘못된 비밀번호 확인입니다.');
             setPassword('');

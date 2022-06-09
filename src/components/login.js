@@ -28,9 +28,19 @@ function Login() {
             })
             .then((res) => {
                 console.log(res);
-                setCheck(true);
+                if (res.status === 200) {
+                    alert('로그인 성공!');
+                    setCheck(true);
+                }
             })
-            .catch((err) => console.log(err));
+            .catch((err) => {
+                console.log(err.response.status);
+                if (err.response.status === 401) {
+                    alert('로그인 실패!');
+                    setId('');
+                    setPassword('');
+                }
+            });
         e.preventDefault();
     };
 
