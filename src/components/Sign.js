@@ -35,8 +35,6 @@ function Sign() {
                     if (res.status === 200) {
                         alert('회원가입 성공!');
                         setCheck(true);
-                    } else {
-                        alert('bad');
                     }
                 })
                 .catch((err) => console.log(err));
