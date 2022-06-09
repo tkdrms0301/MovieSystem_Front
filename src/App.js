@@ -1,5 +1,5 @@
 import './App.css';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import HomeLayout from './HomeLayout';
 import Movie from './components/Movie';
@@ -11,8 +11,16 @@ import MovieDetail from './components/MovieDetail';
 import MovieSchedule from './components/MovieSchedule';
 import Ticketing from './components/Ticketing';
 import TicketingSeat from './components/TicketingSeat';
+import { useCookies } from 'react-cookie';
 
 function App() {
+    const [cookies, setCookie, removeCookie] = useCookies(['jwt']);
+    const [hasCookie, setHasCookie] = useState(false);
+
+    useEffect(() => {
+        if (cookies['jwt'] != undefined) setHasCookie(true);
+    });
+
     return (
         <div className="root">
             <Router>
