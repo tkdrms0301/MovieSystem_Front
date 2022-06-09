@@ -1,7 +1,8 @@
 import Schedule from './Schedule';
-import Moment from 'moment';
 
 function EachMovieSchedule({ movieSchedule }) {
+    const strDate = String(movieSchedule[0].movie.openingDate);
+    const date = strDate.split('T');
     return (
         <li>
             <div class="col-times">
@@ -16,7 +17,7 @@ function EachMovieSchedule({ movieSchedule }) {
                         <em>상영중</em>
                     </span>
                     <i>{movieSchedule[0].movie.genre}/</i> <i>{movieSchedule[0].movie.runtime}/</i>{' '}
-                    <i>{Moment(movieSchedule[0].movie.openingDate).format('YYYY.MM.DD')} 개봉</i>
+                    <i>{date[0].replaceAll('-', '.')} 개봉</i>
                 </div>
 
                 <div class="type-hall">
