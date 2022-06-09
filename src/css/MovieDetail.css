@@ -31,8 +31,7 @@
     vertical-align: middle;
     margin-left: 15px;
 }
-.round,
-.round > * {
+.round {
     display: inline-block;
     position: relative;
     color: #3e82a4;
