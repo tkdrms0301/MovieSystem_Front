@@ -9,7 +9,7 @@ function HomeLayout(props) {
             <div className="header">
                 <div className="header_content">
                     <div className="contents">
-                        <span className="More" onClick="openNav()">
+                        <span className="More" onclick="openNav()">
                             &#9776;
                         </span>
                         <div className="cgvImeage">
@@ -37,7 +37,7 @@ function HomeLayout(props) {
                                 <a
                                     href="javascript:void(0)"
                                     className="closebtn"
-                                    onClick="closeNav()"
+                                    onclick="closeNav()"
                                 >
                                     &times;
                                 </a>

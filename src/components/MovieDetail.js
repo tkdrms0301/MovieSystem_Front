@@ -1,6 +1,36 @@
+import { useState } from 'react';
+import axios from 'axios';
 import '../css/MovieDetail.css';
 
-function MovieDetail() {
+function MovieDetail(props) {
+    //const movie_id
+    const [grade, setGrade] = useState('');
+    const [comment, setComment] = useState('');
+
+    const onChangeGrade = (event) => {
+        setGrade(event.target.value);
+        console.log(event.target.value);
+    };
+
+    const onChangeComment = (event) => {
+        setComment(event.target.value);
+        console.log(event.target.value);
+    };
+
+    const onSubmit = (event) => {
+        axios
+            .post('http://localhost:8080/commentPost', {
+                //object_movie_id
+                grade: grade,
+                comment: comment,
+            })
+            .then((res) => {
+                console.log(res);
+            })
+            .catch((err) => console.log(err));
+        event.preventDefault();
+    };
+
     return (
         <div class="sect-base-movie">
             <div class="movie-box">
@@ -53,8 +83,13 @@ function MovieDetail() {
                 </div>
             </div>
             <div class="write-comment">
-                <form action="#" class="comment-form">
-                    <select name="grade" class="comment-select">
+                <form action="#" class="comment-form" onSubmit={onSubmit}>
+                    <select
+                        name="grade"
+                        class="comment-select"
+                        value={grade}
+                        onChange={onChangeGrade}
+                    >
                         <option value="">평점 선택</option>
                         <option value="5">5</option>
                         <option value="4">4</option>
@@ -66,6 +101,8 @@ function MovieDetail() {
                         class="comment-input"
                         type="text"
                         placeholder="댓글을 작성해주세요."
+                        value={comment}
+                        onChange={onChangeComment}
                     ></input>
                     <input class="comment-submit" type="submit" value="댓글 작성" />
                 </form>
