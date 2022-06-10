@@ -2,7 +2,6 @@ import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
 function MovieContent({ movieContent, index }) {
-    console.log(movieContent);
     return (
         <li>
             <div class="movie_box-image">
@@ -13,6 +12,7 @@ function MovieContent({ movieContent, index }) {
                         <span class="ico-grade grade-12">
                             <img
                                 src={`https://img.cgv.co.kr/R2014/images/common/flag/age/grade-${movieContent.screenGrade}.png`}
+                                alt=""
                             />
                         </span>
                     </span>
