@@ -31,8 +31,6 @@ function EachMovieSchedule({ movieSchedule }) {
                     <div class="info-timetable">
                         <ul>
                             <Schedule movieSchedule={movieSchedule[0]} />
-
-                            <Schedule movieSchedule={movieSchedule[1]} />
                         </ul>
                     </div>
                 </div>
@@ -47,9 +45,7 @@ function EachMovieSchedule({ movieSchedule }) {
                     </div>
                     <div class="info-timetable">
                         <ul>
-                            <Schedule movieSchedule={movieSchedule[2]} />
-
-                            <Schedule movieSchedule={movieSchedule[3]} />
+                            <Schedule movieSchedule={movieSchedule[1]} />
                         </ul>
                     </div>
                 </div>
