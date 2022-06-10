@@ -5,6 +5,34 @@ import '../css/Comment.css';
 import { useLocation } from 'react-router-dom';
 import Comment from './Comment';
 
+function commentWrite(n) {
+    var target = document.getElementsByClassName('detaileView-write-comment');
+    target[n].style.display = 'block';
+
+    var target = document.getElementsByClassName('detaileView-Modify-comment');
+    target[n].style.display = 'none';
+}
+
+function commentWriteNone(n) {
+    var target = document.getElementsByClassName('detaileView-write-comment');
+    target[n].style.display = 'none';
+}
+
+function commentModifyWrite(n) {
+    var target = document.getElementsByClassName('detaileView-Modify-comment');
+    target[n].style.display = 'block';
+
+    var target = document.getElementsByClassName('detaileView-write-comment');
+    target[n].style.display = 'none';
+}
+
+function commentModifyWriteNone(n) {
+    var target = document.getElementsByClassName('detaileView-Modify-comment');
+    for (let i = 0; target.length; i++) {
+        target[i].style.display = 'none';
+    }
+}
+
 function MovieDetail(props) {
     //const movie_id
     const search = useLocation().search;
@@ -48,63 +76,73 @@ function MovieDetail(props) {
     };
 
     const onSubmit = (event) => {
-        axios
-            .post('http://localhost:8080/' + movie + '/comment', {
-                grade: grade,
-                contents: comment,
-                memberId: '62a19a4f8383c2dba4b379fa',
-            })
-            .then((res) => {
-                setGrade('');
-                setComment('');
-                axios.get('http://localhost:8080/' + movie + '/comment').then((res) => {
-                    setCommentData(res.data);
+        if (grade == '') {
+            window.alert(['평점 선택은 필수입니다.']);
+        } else if (comment == '') {
+            window.alert(['내용 작성은 필수입니다.']);
+        } else {
+            axios
+                .post('http://localhost:8080/' + movie + '/comment', {
+                    grade: grade,
+                    contents: comment,
+                    memberId: '62a3a2fa52c6b87c91f8ec87',
+                })
+                .then((res) => {
+                    setGrade('');
+                    setComment('');
+                    axios.get('http://localhost:8080/' + movie + '/comment').then((res) => {
+                        setCommentData(res.data);
+                        setCheckComment(true);
+                    });
+                })
+                .catch((err) => console.log(err));
+            window.alert(['등록 완료']);
+            //window.location.reload();
+        }
 
-                    setCheckComment(true);
-
-                });
-            })
-            .catch((err) => console.log(err));
         event.preventDefault();
     };
 
     return (
-        <div class="sect-base-movie">
+        <div class="detaileView-sect-base-movie">
             {check ? (
-                <div class="movie-box">
-                    <div class="box-image">
-                        <img
-                            class="img"
-                            src={movieData.movies.url}
-                            alt=""
-                            onerror="errorImage(this)"
-                        />
+                <div class="detaileView-movie-box">
+                    <div class="detaileView-box-image">
+                        <img src={movieData.movies.url} alt="" onerror="errorImage(this)" />
                     </div>
-                    <div class="box-contents">
-                        <div class="title">
-                            <span>{movieData.movies.title}</span>
-                            <span class="round">현재상영중</span>
+                    <div class="detaileView-box-contents">
+                        <div class="detaileView-title">
+                            <div class="detaileView-title-content">
+                                <span>{movieData.movies.title}</span>
+                            </div>
+                            <span class="detaileView-round">현재상영중</span>
                         </div>
-                        <div class="score">
-                            <span>예매율</span>
-                            <span>{movieData.movies.ticketingRate}%</span>
-                            <span>평점</span>
-                            <span>{movieData.movies.averageGrade}</span>
+                        <div class="detaileView-score">
+                            <div class="detaileView-ticketRate">
+                                <span>예매율 </span>
+                                <span>{movieData.movies.ticketingRate}%</span>
+                            </div>
+                            <div class="detaileView-grade">
+                                <span>평점 </span>
+                                <span>{movieData.movies.averageGrade}</span>
+                            </div>
                         </div>
-                        <div class="info">
-                            <span>장르 : </span>
-                            <span>{movieData.movies.genre}</span>
-                            <span>기본 : </span>
-                            <span>{movieData.movies.screenGrade}세 이상</span>
-                            <span>,</span>
-                            <span>{movieData.movies.runtime}</span>
+                        <div class="detaileView-info">
+                            <div class="detaileView-movie-info">
+                                <span>장르 : </span>
+                                <span>{movieData.movies.genre}</span>
+                                <span> / 기본 : </span>
+                                <span>{movieData.movies.screenGrade}세 이상</span>
+                                <span>, </span>
+                                <span>{movieData.movies.runtime}</span>
+                            </div>
+                            <div class="detaileView-open">
+                                <span>개봉 : </span>
+                                <span>{movieData.movies.openingDate}</span>
+                            </div>
                         </div>
-                        <div class="open">
-                            <span>개봉 : </span>
-                            <span>{movieData.movies.openingDate}</span>
-                        </div>
-                        <span class="like">
-                            <a class="link-reservation" href="#">
+                        <span class="detaileView-like">
+                            <a class="detaileView-link-reservation" href="#">
                                 예매
                             </a>
                         </span>
@@ -112,46 +150,67 @@ function MovieDetail(props) {
                 </div>
             ) : null}
 
-            <div class="real-rating">
-                <div class="wrap_btn">
-                    <a class="link-gradewrite" href="#">
+            <div class="detaileView-real-rating">
+                <div class="detaileView-wrap_btn">
+                    <a
+                        class="detaileView-link-gradewrite"
+                        onClick={() => {
+                            commentWrite(0);
+                            commentModifyWriteNone(0);
+                        }}
+                    >
                         <span>평점작성</span>
                     </a>
                 </div>
             </div>
-            <div class="write-comment">
-                <form class="comment-form" onSubmit={onSubmit}>
-                    <select
-                        name="grade"
-                        class="comment-select"
-                        value={grade}
-                        onChange={onChangeGrade}
-                    >
-                        <option value="">평점 선택</option>
-                        <option value="5">5</option>
-                        <option value="4">4</option>
-                        <option value="3">3</option>
-                        <option value="2">2</option>
-                        <option value="1">1</option>
-                    </select>
-                    <input
-                        class="comment-input"
-                        type="text"
-                        placeholder="댓글을 작성해주세요."
-                        value={comment}
-                        onChange={onChangeComment}
-                    ></input>
-                    <input class="comment-submit" type="submit" value="댓글 작성" />
+            <div class="detaileView-write-comment">
+                <form class="detaileView-comment-form" onSubmit={onSubmit}>
+                    <div class="detaileView-comment-select">
+                        <select name="grade" value={grade} onChange={onChangeGrade}>
+                            <option value="">평점 선택</option>
+                            <option value="5">5</option>
+                            <option value="4">4</option>
+                            <option value="3">3</option>
+                            <option value="2">2</option>
+                            <option value="1">1</option>
+                        </select>
+                    </div>
+                    <div class="detaileView-comment-input">
+                        <input
+                            type="text"
+                            maxlength="20"
+                            placeholder="댓글을 작성해주세요."
+                            value={comment}
+                            onChange={onChangeComment}
+                        ></input>
+                    </div>
+                    <div class="detaileView-comment-submit">
+                        <input
+                            type="submit"
+                            value="댓글 작성"
+                            onClick={() => {
+                                commentWriteNone(0);
+                                commentModifyWriteNone(0);
+                            }}
+                        />
+                    </div>
                 </form>
             </div>
+
             <div class="comment_wrap-persongrade">
                 <ul class="point_col2" id="movie_point_list_container">
-                    {commentData.map((commentContent) => (
-                        <Comment commentContent={commentContent}></Comment>
+                    {commentData.map((commentContent, index) => (
+                        <Comment
+                            index={index}
+                            commentContent={commentContent}
+                            commentModifyWrite={commentModifyWrite}
+                            commentWriteNone={commentWriteNone}
+                        ></Comment>
                     ))}
                 </ul>
             </div>
         </div>
     );
 }
+
 export default MovieDetail;
