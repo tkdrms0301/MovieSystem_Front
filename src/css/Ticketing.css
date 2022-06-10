@@ -27,15 +27,23 @@
 }
 
 .ticket-movieList {
-    margin-top: 15px;
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.ticket-movieList li {
+    color: black;
+    margin-top: 2px;
+    width: 100%;
+    cursor: pointer;
 }
 
 .ticket-movieInfo {
-    margin-top: 15px;
-    width: 90%;
+    margin-left: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
     display: flex;
     align-items: center;
 }
@@ -109,6 +117,7 @@
     text-align: center;
 }
 .ticket-movieTime {
+    cursor: pointer;
     font-size: 16px;
     font-weight: bold;
     border: 1px solid rgb(160, 156, 156);
@@ -122,6 +131,10 @@
 }
 
 .ticket_tnb {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
     width: 100%;
     height: 180px;
     background-color: rgb(43, 41, 41);
@@ -166,16 +179,17 @@
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    width: 150px;
+    width: 160px;
     border-right: 2px solid rgb(141, 136, 136);
 }
 
 .ticket_tnb-movieInfo span {
     color: rgb(231, 228, 228);
+    font-size: 15px;
 }
 .ticket_tnb-movieInfo_detaile {
     margin-left: 10px;
-    width: 90px;
+    width: 100px;
     font-weight: bold;
 }
 
@@ -185,22 +199,13 @@
     margin-left: 230px;
 }
 
-.ticket_tnb-seating :hover {
-    cursor: pointer;
-}
-
 .ticket_tnb-seating input {
-    background-color: rgb(209, 56, 56);
+    cursor: auto;
+    background-color: rgb(105, 57, 57);
     border-radius: 20px;
     width: 140px;
     height: 130px;
-    color: white;
+    color: rgb(136, 130, 130);
     font-size: 20px;
     font-weight: bold;
-}
-
-@media screen and (max-width: 1000px) {
-    .ticket-container {
-        margin-top: 100px;
-    }
 }

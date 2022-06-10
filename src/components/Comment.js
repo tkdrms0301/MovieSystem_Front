@@ -19,7 +19,7 @@ function commentModifyButton(memberId, commentContentID) {
 
 function Comment({ commentContent, commentModifyWrite, commentWriteNone, index }) {
     //이것만 변경하면 다른것들 수정버튼 사용불가능
-    const memberId = '62a3a2fa52c6b87c91f8ec87';
+    const memberId = '62a19a4f8383c2dba4b379fa';
     const strDate = String(commentContent.date);
     const date = strDate.split('T');
     const search = useLocation().search;
@@ -38,7 +38,7 @@ function Comment({ commentContent, commentModifyWrite, commentWriteNone, index }
                     '/' +
                     memberId,
                 {
-                    recommandMember: '62a3a2fa52c6b87c91f8ec87',
+                    recommandMember: '62a19a4f8383c2dba4b379fa',
                     recommandNum: commentContent.recommandNum + 1,
                 },
             )
