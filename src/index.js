@@ -9,9 +9,9 @@ import stroe from './store';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
     <React.StrictMode>
-        <Provider store={stroe}>
-            <App />
-        </Provider>
+        {/* <Provider store={stroe}> */}
+        <App />
+        {/* </Provider> */}
     </React.StrictMode>,
 );
 

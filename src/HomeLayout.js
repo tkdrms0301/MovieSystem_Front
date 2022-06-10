@@ -12,6 +12,17 @@ function openNav() {
 
 function HomeLayout(props) {
     const { children } = props;
+    const cookie = props.cookie;
+    const setCookie = props.setCookie;
+    const hasCookie = props.hasCookie;
+    const setHasCookie = props.setHasCookie;
+    const removeCookie = props.removeCookie;
+
+    const logout = () => {
+        setHasCookie(false);
+        removeCookie('jwt');
+    };
+
     return (
         <div>
             <div className="header">
@@ -41,51 +52,91 @@ function HomeLayout(props) {
                                 </a>
                             </div>
 
-                            <div id="mySidenav" className="sidenav">
-                                <a
-                                    href="javascript:void(0)"
-                                    className="closebtn"
-                                    onClick={() => closeNav()}
-                                >
-                                    &times;
-                                </a>
-                                <li>
-                                    <Link to="/login">
-                                        <img
-                                            src="https://img.cgv.co.kr/R2014/images/common/ico/loginPassword.png"
-                                            alt="로그인"
-                                        />
-                                        <span>로그인</span>
-                                    </Link>
-                                </li>
-                                <li>
-                                    <a href="/sign">
-                                        <img
-                                            src="https://img.cgv.co.kr/R2014/images/common/ico/loginJoin.png"
-                                            alt="회원가입"
-                                        />
-                                        <span>회원가입</span>
+                            {hasCookie ? (
+                                <div id="mySidenav" className="sidenav">
+                                    <a
+                                        href="javascript:void(0)"
+                                        className="closebtn"
+                                        onClick={() => closeNav()}
+                                    >
+                                        &times;
                                     </a>
-                                </li>
-                                <li>
-                                    <a href="/mypage">
-                                        <img
-                                            src="https://img.cgv.co.kr/R2014/images/common/ico/loginMember.png"
-                                            alt="MY CGV"
-                                        />
-                                        <span>MY CGV</span>
+                                    <li onClick={() => logout()}>
+                                        <a href="#none">
+                                            <img
+                                                src="https://img.cgv.co.kr/R2014/images/common/ico/loginPassword.png"
+                                                alt="로그아웃"
+                                            />
+                                            <span>로그아웃</span>
+                                        </a>
+                                    </li>
+
+                                    <li>
+                                        <a href="/mypage">
+                                            <img
+                                                src="https://img.cgv.co.kr/R2014/images/common/ico/loginMember.png"
+                                                alt="MY CGV"
+                                            />
+                                            <span>MY CGV</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <img
+                                                src="https://img.cgv.co.kr/R2014/images/common/ico/loginCustomer.png"
+                                                alt="고객센터"
+                                            />
+                                            <span>고객센터</span>
+                                        </a>
+                                    </li>
+                                </div>
+                            ) : (
+                                <div id="mySidenav" className="sidenav">
+                                    <a
+                                        href="javascript:void(0)"
+                                        className="closebtn"
+                                        onClick={() => closeNav()}
+                                    >
+                                        &times;
                                     </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <img
-                                            src="https://img.cgv.co.kr/R2014/images/common/ico/loginCustomer.png"
-                                            alt="고객센터"
-                                        />
-                                        <span>고객센터</span>
-                                    </a>
-                                </li>
-                            </div>
+                                    <li>
+                                        <Link to="/login">
+                                            <img
+                                                src="https://img.cgv.co.kr/R2014/images/common/ico/loginPassword.png"
+                                                alt="로그인"
+                                            />
+                                            <span>로그인</span>
+                                        </Link>
+                                    </li>
+                                    <li>
+                                        <a href="/sign">
+                                            <img
+                                                src="https://img.cgv.co.kr/R2014/images/common/ico/loginJoin.png"
+                                                alt="회원가입"
+                                            />
+                                            <span>회원가입</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="/mypage">
+                                            <img
+                                                src="https://img.cgv.co.kr/R2014/images/common/ico/loginMember.png"
+                                                alt="MY CGV"
+                                            />
+                                            <span>MY CGV</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <img
+                                                src="https://img.cgv.co.kr/R2014/images/common/ico/loginCustomer.png"
+                                                alt="고객센터"
+                                            />
+                                            <span>고객센터</span>
+                                        </a>
+                                    </li>
+                                </div>
+                            )}
                         </ul>
                     </div>
                 </div>
@@ -117,6 +168,8 @@ function HomeLayout(props) {
                 </div>
             </div>
             <div>{children}</div>
+            {console.log('cookie : ' + cookie)}
+            {console.log(hasCookie)}
         </div>
     );
 }
