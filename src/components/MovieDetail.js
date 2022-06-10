@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import '../css/MovieDetail.css';
 import { useLocation } from 'react-router-dom';
+import Comment from './Comment';
 
 function MovieDetail(props) {
     //const movie_id
@@ -10,6 +11,7 @@ function MovieDetail(props) {
     const [check, setCheck] = useState(false);
 
     const [movieData, setMovieData] = useState('');
+    const [commentData, setCommentData] = useState([]);
 
     function startMovie() {
         axios
@@ -19,12 +21,14 @@ function MovieDetail(props) {
                 setCheck(true);
             })
             .catch((err) => console.log(err));
+        axios.get('http://localhost:8080/' + movie + '/comment').then((res) => {
+            setCommentData(res.data);
+        });
     }
 
     useEffect(() => {
-        console.log(typeof movie);
         startMovie();
-    }, []);
+    }, [commentData]);
 
     const [grade, setGrade] = useState('');
     const [comment, setComment] = useState('');
@@ -39,19 +43,21 @@ function MovieDetail(props) {
         console.log(event.target.value);
     };
 
-    // const onSubmit = (event) => {
-    //     axios
-    //         .post('http://localhost:8080/commentPost', {
-    //             //object_movie_id
-    //             grade: grade,
-    //             comment: comment,
-    //         })
-    //         .then((res) => {
-    //             console.log(res);
-    //         })
-    //         .catch((err) => console.log(err));
-    //     event.preventDefault();
-    // };
+    const onSubmit = (event) => {
+        axios
+            .post('http://localhost:8080/' + movie + '/comment', {
+                //object_movie_id
+                grade: grade,
+                contents: comment,
+                memberId: '629b0bffc177f7f6ffd45f1e',
+            })
+            .then((res) => {
+                setGrade('');
+                setComment('');
+            })
+            .catch((err) => console.log(err));
+        event.preventDefault();
+    };
 
     return (
         <div class="sect-base-movie">
@@ -105,8 +111,13 @@ function MovieDetail(props) {
                 </div>
             </div>
             <div class="write-comment">
-                <form action="#" class="comment-form">
-                    <select name="grade" class="comment-select" value="" onChange="">
+                <form class="comment-form" onSubmit={onSubmit}>
+                    <select
+                        name="grade"
+                        class="comment-select"
+                        value={grade}
+                        onChange={onChangeGrade}
+                    >
                         <option value="">평점 선택</option>
                         <option value="5">5</option>
                         <option value="4">4</option>
@@ -118,13 +129,18 @@ function MovieDetail(props) {
                         class="comment-input"
                         type="text"
                         placeholder="댓글을 작성해주세요."
-                        value=""
-                        onChange=""
+                        value={comment}
+                        onChange={onChangeComment}
                     ></input>
                     <input class="comment-submit" type="submit" value="댓글 작성" />
                 </form>
             </div>
-            <div class="comment">comment</div>
+            <div class="comment">
+                {console.log(commentData)}
+                {commentData.map((commentContent) => (
+                    <Comment commentContent={commentContent}></Comment>
+                ))}
+            </div>
         </div>
     );
 }
