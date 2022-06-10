@@ -1,5 +1,5 @@
 import './App.css';
-import React, { useEffect, useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import HomeLayout from './HomeLayout';
 import Movie from './components/Movie';
@@ -18,18 +18,34 @@ function App() {
     const [hasCookie, setHasCookie] = useState(false);
 
     useEffect(() => {
-        if (cookies['jwt'] != undefined) setHasCookie(true);
+        if (cookies['jwt'] !== undefined) setHasCookie(true);
     });
 
     return (
         <div className="root">
             <Router>
-                <HomeLayout>
+                <HomeLayout
+                    cookies={cookies}
+                    hasCookie={hasCookie}
+                    setHasCookie={setHasCookie}
+                    removeCookie={removeCookie}
+                    setCookie={setCookie}
+                >
                     <Routes>
                         <Route exact path="/" element={<Home />} />
                         <Route exact path="/movies" element={<Movie />} />
                         <Route exact path="/theaters" element={<MovieSchedule />}></Route>
-                        <Route exact path="/login" element={<Login />} />
+                        <Route
+                            exact
+                            path="/login"
+                            element={
+                                <Login
+                                    hasCookie={hasCookie}
+                                    setCookie={setCookie}
+                                    setHasCookie={setHasCookie}
+                                />
+                            }
+                        />
                         <Route exact path="/sign" element={<Sign />} />
                         <Route exact path="/mypage" element={<MyPage />} />
                         <Route exact path="/movieDetail" element={<MovieDetail />} />
