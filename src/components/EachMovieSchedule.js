@@ -24,8 +24,10 @@ function EachMovieSchedule({ movieSchedule }) {
                     <div class="info-hall">
                         <ul>
                             <li>2D</li>
-                            <li>{movieSchedule[0].theater.theaterName}</li>
-                            <li>총 {movieSchedule[0].theater.totalSeat}석</li>
+                            {console.log(movieSchedule[0]?.theater?.theaterName)}
+
+                            <li>{movieSchedule[0]?.theater?.theaterName}</li>
+                            <li>총 {movieSchedule[0]?.theater?.totalSeat}석</li>
                         </ul>
                     </div>
                     <div class="info-timetable">
@@ -39,8 +41,8 @@ function EachMovieSchedule({ movieSchedule }) {
                     <div class="info-hall">
                         <ul>
                             <li>2D</li>
-                            <li>{movieSchedule[1].theater.theaterName}</li>
-                            <li>총 {movieSchedule[1].theater.totalSeat}석</li>
+                            <li>{movieSchedule[1]?.theater?.theaterName}</li>
+                            <li>총 {movieSchedule[1]?.theater?.totalSeat}석</li>
                         </ul>
                     </div>
                     <div class="info-timetable">

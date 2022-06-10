@@ -4,15 +4,22 @@ import { Link, useLocation, Navigate } from 'react-router-dom';
 
 function commentModifyButton(memberId, commentContentID) {
     var target = document.getElementsByClassName('comment_modify_button');
-    if (memberId == commentContentID) {
-        for (let i = 0; i < target.length; i++) {
+
+    console.log(memberId);
+    console.log(commentContentID);
+
+    for (let i = 0; i < target.length; i++) {
+        if (memberId === commentContentID) {
+            console.log('aa ' + memberId);
+            console.log('aa ' + commentContentID);
             target[i].style.display = 'block';
         }
     }
 }
 
 function Comment({ commentContent, commentModifyWrite, commentWriteNone, index }) {
-    const memberId = '629b0bffc177f7f6ffd45f1e';
+    //이것만 변경하면 다른것들 수정버튼 사용불가능
+    const memberId = '62a3a2fa52c6b87c91f8ec87';
     const strDate = String(commentContent.date);
     const date = strDate.split('T');
     const search = useLocation().search;
@@ -31,7 +38,7 @@ function Comment({ commentContent, commentModifyWrite, commentWriteNone, index }
                     '/' +
                     memberId,
                 {
-                    recommandMember: '629ef3f5679fa39695518c56',
+                    recommandMember: '62a3a2fa52c6b87c91f8ec87',
                     recommandNum: commentContent.recommandNum + 1,
                 },
             )
@@ -67,7 +74,10 @@ function Comment({ commentContent, commentModifyWrite, commentWriteNone, index }
                     content: modifyComment,
                     grade: modifyGrade,
                 })
-                .then((res) => {})
+                .then((res) => {
+                    console.log(commentContent._id);
+                    console.log(memberId);
+                })
                 .catch((err) => console.log(err));
             window.alert(['수정 완료']);
             window.location.reload();
@@ -108,6 +118,8 @@ function Comment({ commentContent, commentModifyWrite, commentWriteNone, index }
                     <div class="comment_box-comment">
                         <p>{commentContent?.contents}</p>
                     </div>
+                    {console.log('ssss' + memberId)}
+                    {console.log('ssss' + commentContent.member._id)}
                     <div
                         class="comment_writer-etc"
                         onLoad={() => {

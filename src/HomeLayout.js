@@ -151,7 +151,7 @@ function HomeLayout(props) {
                             </li>
                             <li>
                                 <Link to="/theaters">
-                                    <h3>극장</h3>
+                                    <h3>상영시간표</h3>
                                 </Link>
                             </li>
                             <li>
