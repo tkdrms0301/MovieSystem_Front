@@ -2,8 +2,9 @@ import '../css/Login.css';
 import { useState } from 'react';
 import axios from 'axios';
 import { Navigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 
-function Login() {
+export default function Login({ setCookie, hasCookie, setHasCookie }) {
     const [id, setId] = useState('');
     const [password, setPassword] = useState('');
     const [check, setCheck] = useState(false);
@@ -18,37 +19,40 @@ function Login() {
         console.log(password);
     };
 
-    const onSubmit = (e) => {
-        // submit 이벤트는 브라우저에서 새로고침을 발생
-        // 이를 방지하기 위해 이 함수를 호출
-        axios
-            .post('http://localhost:8080/login/member', {
+    const onSubmit = async (e) => {
+        try {
+            e.preventDefault(); // 불필요한 렌더링 방지
+
+            console.log(id);
+            console.log(password);
+
+            const login = await axios.post('http://localhost:8080/login/member', {
                 id: id,
                 password: password,
-            })
-            .then((res) => {
-                console.log(res);
-                if (res.status === 200) {
-                    alert('로그인 성공!');
-                    setCheck(true);
-                }
-            })
-            .catch((err) => {
-                console.log(err.response.status);
-                if (err.response.status === 401) {
-                    alert('로그인 실패!');
-                    setId('');
-                    setPassword('');
-                }
             });
-        e.preventDefault();
+
+            console.log(login.data);
+            if (login.status === 200) {
+                alert('로그인 성공!');
+                console.log(login.cookie);
+                setCookie('jwt', document.cookie);
+                setHasCookie(true);
+            }
+        } catch (err) {
+            console.log(err.response.status);
+            if (err.response.status === 401) {
+                alert('로그인 실패!');
+                setId('');
+                setPassword('');
+            }
+        }
     };
 
     return (
-        <div class="box-login">
-            <form class="login-form" method="post" onSubmit={onSubmit}>
+        <div className="box-login">
+            <form className="login-form" onSubmit={onSubmit}>
                 <p>아이디 비밀번호를 입력하신 후, 로그인 버튼을 클릭해 주세요.</p>
-                <div class="login">
+                <div className="login">
                     <p>
                         <input
                             placeholder="  ID"
@@ -78,9 +82,7 @@ function Login() {
                     <span>로그인</span>
                 </button>
             </form>
-            {check && <Navigate to="/" />}
+            {hasCookie && <Navigate to="/" />}
         </div>
     );
 }
-
-export default Login;
