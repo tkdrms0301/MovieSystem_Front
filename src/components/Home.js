@@ -28,8 +28,12 @@ export default function Home() {
     useEffect(() => {
         const getMovies = async () => {
             try {
+                setPosts(false);
                 const movies = await axios.get('http://localhost:8080/movieGet');
+                console.log('1234123431241234');
+
                 const events = await axios.get('http://localhost:8080/eventGet');
+                console.log('46546546546556');
                 console.log(movies.data);
                 console.log(events.data);
                 setMovie(movies.data);
