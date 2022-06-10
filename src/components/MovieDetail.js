@@ -9,9 +9,13 @@ function MovieDetail(props) {
     const search = useLocation().search;
     const movie = new URLSearchParams(search).get('movie');
     const [check, setCheck] = useState(false);
+    const [checkComment, setCheckComment] = useState(false);
 
     const [movieData, setMovieData] = useState('');
     const [commentData, setCommentData] = useState([]);
+
+    const [grade, setGrade] = useState('');
+    const [comment, setComment] = useState('');
 
     function startMovie() {
         axios
@@ -23,15 +27,14 @@ function MovieDetail(props) {
             .catch((err) => console.log(err));
         axios.get('http://localhost:8080/' + movie + '/comment').then((res) => {
             setCommentData(res.data);
+            console.log(res.data);
+            setCheckComment(true);
         });
     }
 
     useEffect(() => {
         startMovie();
-    }, [commentData]);
-
-    const [grade, setGrade] = useState('');
-    const [comment, setComment] = useState('');
+    }, []);
 
     const onChangeGrade = (event) => {
         setGrade(event.target.value);
@@ -46,7 +49,6 @@ function MovieDetail(props) {
     const onSubmit = (event) => {
         axios
             .post('http://localhost:8080/' + movie + '/comment', {
-                //object_movie_id
                 grade: grade,
                 contents: comment,
                 memberId: '629b0bffc177f7f6ffd45f1e',
@@ -54,6 +56,10 @@ function MovieDetail(props) {
             .then((res) => {
                 setGrade('');
                 setComment('');
+                axios.get('http://localhost:8080/' + movie + '/comment').then((res) => {
+                    setCommentData(res.data);
+                    setCheckComment(true);
+                });
             })
             .catch((err) => console.log(err));
         event.preventDefault();
@@ -135,12 +141,13 @@ function MovieDetail(props) {
                     <input class="comment-submit" type="submit" value="댓글 작성" />
                 </form>
             </div>
-            <div class="comment">
-                {console.log(commentData)}
-                {commentData.map((commentContent) => (
-                    <Comment commentContent={commentContent}></Comment>
-                ))}
-            </div>
+            {check ? (
+                <div class="comment">
+                    {commentData.map((commentContent) => (
+                        <Comment commentContent={commentContent}></Comment>
+                    ))}
+                </div>
+            ) : null}
         </div>
     );
 }
