@@ -85,7 +85,7 @@ function MovieDetail(props) {
                 .post('http://localhost:8080/' + movie + '/comment', {
                     grade: grade,
                     contents: comment,
-                    memberId: '62a3a2fa52c6b87c91f8ec87',
+                    memberId: '62a19a4f8383c2dba4b379fa',
                 })
                 .then((res) => {
                     setGrade('');
