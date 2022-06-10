@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import '../css/MovieDetail.css';
+import '../css/Comment.css';
 import { useLocation } from 'react-router-dom';
 import Comment from './Comment';
 
@@ -28,7 +29,7 @@ function MovieDetail(props) {
 
     useEffect(() => {
         startMovie();
-    }, [commentData]);
+    }, []);
 
     const [grade, setGrade] = useState('');
     const [comment, setComment] = useState('');
@@ -49,11 +50,14 @@ function MovieDetail(props) {
                 //object_movie_id
                 grade: grade,
                 contents: comment,
-                memberId: '629b0bffc177f7f6ffd45f1e',
+                memberId: '62a19a4f8383c2dba4b379fa',
             })
             .then((res) => {
                 setGrade('');
                 setComment('');
+                axios.get('http://localhost:8080/' + movie + '/comment').then((res) => {
+                    setCommentData(res.data);
+                });
             })
             .catch((err) => console.log(err));
         event.preventDefault();
@@ -135,11 +139,12 @@ function MovieDetail(props) {
                     <input class="comment-submit" type="submit" value="댓글 작성" />
                 </form>
             </div>
-            <div class="comment">
-                {console.log(commentData)}
-                {commentData.map((commentContent) => (
-                    <Comment commentContent={commentContent}></Comment>
-                ))}
+            <div class="comment_wrap-persongrade">
+                <ul class="point_col2" id="movie_point_list_container">
+                    {commentData.map((commentContent) => (
+                        <Comment commentContent={commentContent}></Comment>
+                    ))}
+                </ul>
             </div>
         </div>
     );
