@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import '../css/MovieDetail.css';
+import '../css/Comment.css';
 import { useLocation } from 'react-router-dom';
 import Comment from './Comment';
 
@@ -51,14 +52,16 @@ function MovieDetail(props) {
             .post('http://localhost:8080/' + movie + '/comment', {
                 grade: grade,
                 contents: comment,
-                memberId: '629b0bffc177f7f6ffd45f1e',
+                memberId: '62a19a4f8383c2dba4b379fa',
             })
             .then((res) => {
                 setGrade('');
                 setComment('');
                 axios.get('http://localhost:8080/' + movie + '/comment').then((res) => {
                     setCommentData(res.data);
+
                     setCheckComment(true);
+
                 });
             })
             .catch((err) => console.log(err));
@@ -141,13 +144,13 @@ function MovieDetail(props) {
                     <input class="comment-submit" type="submit" value="댓글 작성" />
                 </form>
             </div>
-            {check ? (
-                <div class="comment">
+            <div class="comment_wrap-persongrade">
+                <ul class="point_col2" id="movie_point_list_container">
                     {commentData.map((commentContent) => (
                         <Comment commentContent={commentContent}></Comment>
                     ))}
-                </div>
-            ) : null}
+                </ul>
+            </div>
         </div>
     );
 }

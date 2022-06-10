@@ -1,0 +1,132 @@
+ul.point_col2 {
+    position: relative;
+    margin: 0 25px -2px;
+    overflow: hidden;
+}
+.comment_wrap-persongrade {
+    margin-top: 30px;
+}
+.comment_wrap-persongrade > ul {
+    border-top: 1px solid #999999;
+    color: #333333;
+}
+ul.point_col2 > li {
+    position: relative;
+    float: left;
+    margin-right: -1px;
+    border-right: none;
+    width: 50%;
+    height: 150px;
+    padding: 30px 0;
+    border-bottom: 1px solid #ddd;
+    zoom: 1;
+}
+.comment_wrap-movie-detail .comment_wrap-persongrade > ul.point_col2 > li:nth-child(2n + 1) {
+    width: 374px;
+    padding-left: 1px !important;
+    border-right: 1px solid #ddd;
+}
+.point_col2 {
+    margin: 0 auto -2px !important;
+    padding: 0 25px;
+}
+.point_col2 li:nth-child(2n + 1) div.comment_box-image {
+    margin-left: 0 !important;
+    padding-left: 0 !important;
+}
+.comment_wrap-persongrade .comment_box-image {
+    float: left;
+    width: 62px;
+    height: 62px;
+    padding: 0 20px;
+}
+.comment_thumb-image {
+    display: block;
+    position: relative;
+}
+span {
+    font-family: 'Noto Sans KR', 'CJONLYONENEW', '맑은 고딕', '돋움', sans-serif;
+    font-size: 100%;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    vertical-align: baseline;
+    word-break: break-all;
+}
+ul {
+    list-style: none;
+}
+.comment_wrap-persongrade .comment_box-image .comment_thumb-image img {
+    width: 62px;
+    height: 62px;
+}
+.comment_wrap-persongrade .comment_box-image .comment_thumb-image .comment_profile-mask {
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 62px;
+    height: 62px;
+    background: url(https://img.cgv.co.kr/R2014/images/common/bg/bg_photocircle.png) 0 0 no-repeat;
+}
+.point_col2 .writerinfo {
+    position: relative;
+    height: 24px;
+}
+.comment_wrap-movie-detail ul.point_col2 > li .comment_writerinfo > li:first-child {
+    float: left;
+}
+.point_col2 .comment_writerinfo li {
+    margin-bottom: 3px;
+    line-height: 20px !important;
+}
+.comment_writerinfo li:first-child {
+    background: none;
+    padding-left: 0;
+}
+.comment_writerinfo .comment_writer-name {
+    font-size: 12px;
+}
+.comment_egg-icon {
+    display: inline-block;
+    margin-right: 6px;
+    width: 22px;
+    height: 22px;
+    background: url(https://img.cgv.co.kr/R2014/images/sprite/sprite_egg.png) no-repeat 0 0;
+    vertical-align: middle;
+}
+.comment_writer-etc {
+    position: absolute;
+    display: flex;
+    left: 0;
+    bottom: -146px;
+    padding: 0 !important;
+    left: 10px;
+    bottom: 10px;
+}
+
+.comment_writer-etc .comment_day {
+    padding-right: 8px;
+    margin-right: 6px;
+    background: url(https://img.cgv.co.kr/R2014/images/common/bg/bg_writeinfo.gif) no-repeat 100% 0;
+}
+.comment_writer-etc > * {
+    vertical-align: middle;
+}
+.comment_btn_point_like {
+    display: flex;
+    padding-right: 8px;
+    margin-right: 6px;
+    background: url(https://img.cgv.co.kr/R2014/images/common/bg/bg_writeinfo.gif) no-repeat 100% 0;
+}
+.comment_like {
+    margin: 0 10px;
+}
+.comment_recommand_count {
+    margin: 0 5px;
+}
+.comment_wrap-persongrade > ul.point_col2 > li:nth-child(2n + 1) {
+    width: 374px;
+    padding-left: 1px !important;
+    border-right: 1px solid #ddd;
+}
