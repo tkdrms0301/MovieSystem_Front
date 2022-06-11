@@ -97,7 +97,7 @@ function MovieDetail({ cookies }) {
                 })
                 .catch((err) => console.log(err));
             window.alert(['등록 완료']);
-            //window.location.reload();
+            window.location.reload();
         }
 
         event.preventDefault();
