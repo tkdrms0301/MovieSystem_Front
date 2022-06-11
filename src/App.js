@@ -32,7 +32,7 @@ function App() {
                     setCookie={setCookie}
                 >
                     <Routes>
-                        <Route exact path="/" element={<Home />} />
+                        <Route exact path="/" element={<Home cookies={cookies} />} />
                         <Route exact path="/movies" element={<Movie />} />
                         <Route exact path="/theaters" element={<MovieSchedule />}></Route>
                         <Route
@@ -43,12 +43,17 @@ function App() {
                                     hasCookie={hasCookie}
                                     setCookie={setCookie}
                                     setHasCookie={setHasCookie}
+                                    cookies={cookies}
                                 />
                             }
                         />
                         <Route exact path="/sign" element={<Sign />} />
                         <Route exact path="/mypage" element={<MyPage />} />
-                        <Route exact path="/movieDetail" element={<MovieDetail />} />
+                        <Route
+                            exact
+                            path="/movieDetail"
+                            element={<MovieDetail cookies={cookies} />}
+                        />
                         <Route exact path="/ticketing" element={<Ticketing />} />
                         <Route exact path="/ticketingSeat" element={<TicketingSeat />} />
                     </Routes>

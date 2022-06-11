@@ -31,7 +31,7 @@ function Ticketing() {
                 this.style.color = 'white';
 
                 for (var j = 0; j < acc.length; j++) {
-                    if (this != acc[j]) {
+                    if (this !== acc[j]) {
                         setTest(j);
                         acc[j].style.backgroundColor = 'rgb(218, 216, 216)'; // 다른요소 선택 시 색 되돌리기
                         acc[j].style.color = 'black';
@@ -50,7 +50,7 @@ function Ticketing() {
         }
     };
     const onClickTime = (event) => {
-        if (test == null) {
+        if (test === null) {
             return;
         }
 
@@ -68,7 +68,7 @@ function Ticketing() {
                 select[0].style.cursor = 'pointer';
 
                 for (var j = 0; j < acc.length; j++) {
-                    if (this != acc[j]) {
+                    if (this !== acc[j]) {
                         console.log(j);
                         setTime(j);
                         acc[j].style.backgroundColor = 'rgb(218, 216, 216)'; // 다른요소 선택 시 색 되돌리기
@@ -121,7 +121,7 @@ function Ticketing() {
                                 <div class="ticket-schdule">
                                     <div class="ticket-cinemaInfo">
                                         <span class="dimension">2D</span>
-                                        {test == 0 ? (
+                                        {test === 0 ? (
                                             <span>{movieInfoAll[2]?.theater?.theaterName}</span>
                                         ) : (
                                             <span>{movieInfoAll[0]?.theater?.theaterName}</span>
@@ -131,7 +131,7 @@ function Ticketing() {
                                     <div class="ticket-timeInfo-box" onClick={onClickTime}>
                                         <div class="ticket-timeInfo">
                                             <div class="ticket-movieTime">
-                                                {test == 0 ? (
+                                                {test === 0 ? (
                                                     <span>{movieInfoAll[2]?.time}</span>
                                                 ) : (
                                                     <span>{movieInfoAll[0]?.time}</span>
@@ -139,7 +139,7 @@ function Ticketing() {
                                             </div>
 
                                             <div class="ticket-seat">
-                                                {test == 0 ? (
+                                                {test === 0 ? (
                                                     <span>
                                                         {movieInfoAll[2]?.theater?.totalSeat}석
                                                     </span>
@@ -153,7 +153,7 @@ function Ticketing() {
 
                                         <div class="ticket-timeInfo">
                                             <div class="ticket-movieTime">
-                                                {test == 0 ? (
+                                                {test === 0 ? (
                                                     <span>{movieInfoAll[3]?.time}</span>
                                                 ) : (
                                                     <span>{movieInfoAll[1]?.time}</span>
@@ -161,7 +161,7 @@ function Ticketing() {
                                             </div>
 
                                             <div class="ticket-seat">
-                                                {test == 0 ? (
+                                                {test === 0 ? (
                                                     <span>
                                                         {movieInfoAll[3]?.theater?.totalSeat}석
                                                     </span>
@@ -181,20 +181,20 @@ function Ticketing() {
                     <div class="ticket_tnb">
                         <div class="ticket_tnb-box">
                             <div class="ticket_tnb-img">
-                                {test == 0 ? (
+                                {test === 0 ? (
                                     <img src={movieInfoAll[2]?.movie?.url} />
                                 ) : (
                                     <img src={movieInfoAll[0]?.movie?.url} />
                                 )}
                             </div>
                             <div class="ticket_tnb-movieName">
-                                {test == 0 ? (
+                                {test === 0 ? (
                                     <span>{movieInfoAll[2]?.movie?.title}</span>
                                 ) : (
                                     <span>{movieInfoAll[0]?.movie?.title}</span>
                                 )}
                                 <span>2D</span>
-                                {test == 0 ? (
+                                {test === 0 ? (
                                     <span>{movieInfoAll[2]?.movie?.screenGrade} 관람가</span>
                                 ) : (
                                     <span>{movieInfoAll[0]?.movie?.screenGrade} 관람가</span>
@@ -205,19 +205,19 @@ function Ticketing() {
                                 <span class="ticket_tnb-movieInfo_detaile">CGV 구미</span>
 
                                 <span>시간</span>
-                                {test == 0 && time == 0 ? (
+                                {test === 0 && time === 0 ? (
                                     <span class="ticket_tnb-movieInfo_detaile">
                                         {movieInfoAll[3]?.time}
                                     </span>
-                                ) : test == 0 && time == 1 ? (
+                                ) : test === 0 && time === 1 ? (
                                     <span class="ticket_tnb-movieInfo_detaile">
                                         {movieInfoAll[2]?.time}
                                     </span>
-                                ) : test == 1 && time == 0 ? (
+                                ) : test === 1 && time === 0 ? (
                                     <span class="ticket_tnb-movieInfo_detaile">
                                         {movieInfoAll[1]?.time}
                                     </span>
-                                ) : test == 1 && time == 1 ? (
+                                ) : test === 1 && time === 1 ? (
                                     <span class="ticket_tnb-movieInfo_detaile">
                                         {movieInfoAll[0]?.time}
                                     </span>
@@ -226,7 +226,7 @@ function Ticketing() {
                                 )}
 
                                 <span>상영관</span>
-                                {test == 0 ? (
+                                {test === 0 ? (
                                     <span class="ticket_tnb-movieInfo_detaile">
                                         {movieInfoAll[2]?.theater?.theaterName}
                                     </span>

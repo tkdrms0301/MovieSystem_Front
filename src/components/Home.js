@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import '../css/Home.css';
 import axios from 'axios';
 
-export default function Home() {
+export default function Home({ cookies }) {
     const [movielocation, setMovieLocation] = useState(0);
     const [eventLocation, setEventLocation] = useState(0);
     const [movie, setMovie] = useState(null);
@@ -14,8 +14,8 @@ export default function Home() {
     const [eventVisiable, setEventVisible] = useState(true);
 
     const changeMovieWrap = () => {
-        if (visiable) setMovieLocation(movielocation - 1024);
-        else setMovieLocation(movielocation + 1024);
+        if (visiable) setMovieLocation(movielocation - 602);
+        else setMovieLocation(movielocation + 602);
         setVisible(!visiable);
     };
 
@@ -29,7 +29,12 @@ export default function Home() {
         const getMovies = async () => {
             try {
                 setPosts(false);
-                const movies = await axios.get('http://localhost:8080/movieGet');
+                console.log('12341234 cookies : ' + cookies['jwt']);
+                const movies = await await axios.get('http://localhost:8080/movieGet', {
+                    headers: {
+                        cookies: cookies['jwt'],
+                    },
+                });
                 console.log('1234123431241234');
 
                 const events = await axios.get('http://localhost:8080/eventGet');
@@ -85,7 +90,7 @@ export default function Home() {
                         <div
                             className="movieChartList_wrap"
                             style={{
-                                transform: `translate3d(${movielocation}px, 0px, 0px)`,
+                                transform: `translate3d(0px, ${movielocation}px, 0px)`,
                             }}
                         >
                             {posts
@@ -110,20 +115,17 @@ export default function Home() {
                                                           src="https://img.cgv.co.kr/R2014/images/common/egg/eggGoldenegggreat.png"
                                                           alt="Golden Egg graet"
                                                       />
-                                                      {m.star}
+                                                      {m.averageGrade}
                                                   </span>
-                                                  <span>{m.rate}</span>
+                                                  <span>{m.ticketingRate}</span>
                                               </div>
                                           </div>
                                       );
                                   })
                                 : null}
                         </div>
-                        {visiable ? (
-                            <div className="nextBtn" onClick={() => changeMovieWrap()} />
-                        ) : (
-                            <div className="prevBtn" onClick={() => changeMovieWrap()} />
-                        )}
+                        <div className="nextBtn" onClick={() => changeMovieWrap()} />
+                        <div className="prevBtn" onClick={() => changeMovieWrap()} />
                     </div>
                 </div>
             </div>

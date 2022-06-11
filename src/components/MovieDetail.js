@@ -9,7 +9,7 @@ function commentWrite(n) {
     var target = document.getElementsByClassName('detaileView-write-comment');
     target[n].style.display = 'block';
 
-    var target = document.getElementsByClassName('detaileView-Modify-comment');
+    target = document.getElementsByClassName('detaileView-Modify-comment');
     target[n].style.display = 'none';
 }
 
@@ -33,7 +33,7 @@ function commentModifyWriteNone(n) {
     }
 }
 
-function MovieDetail(props) {
+function MovieDetail({ cookies }) {
     //const movie_id
     const search = useLocation().search;
     const movie = new URLSearchParams(search).get('movie');
@@ -85,7 +85,7 @@ function MovieDetail(props) {
                 .post('http://localhost:8080/' + movie + '/comment', {
                     grade: grade,
                     contents: comment,
-                    memberId: '62a19a4f8383c2dba4b379fa',
+                    memberId: cookies['jwt'],
                 })
                 .then((res) => {
                     setGrade('');
@@ -205,6 +205,7 @@ function MovieDetail(props) {
                             commentContent={commentContent}
                             commentModifyWrite={commentModifyWrite}
                             commentWriteNone={commentWriteNone}
+                            cookies={cookies}
                         ></Comment>
                     ))}
                 </ul>

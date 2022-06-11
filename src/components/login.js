@@ -4,7 +4,7 @@ import axios from 'axios';
 import { Navigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 
-export default function Login({ setCookie, hasCookie, setHasCookie }) {
+export default function Login({ cookies, setCookie, hasCookie, setHasCookie }) {
     const [id, setId] = useState('');
     const [password, setPassword] = useState('');
     const [check, setCheck] = useState(false);
@@ -26,16 +26,21 @@ export default function Login({ setCookie, hasCookie, setHasCookie }) {
             console.log(id);
             console.log(password);
 
-            const login = await axios.post('http://localhost:8080/login/member', {
-                id: id,
-                password: password,
-            });
+            const login = await axios.post(
+                'http://localhost:8080/login/member',
+                {
+                    id: id,
+                    password: password,
+                },
+                { withCredentials: true },
+            );
 
             console.log(login.data);
             if (login.status === 200) {
                 alert('로그인 성공!');
                 console.log(login.cookie);
-                setCookie('jwt', document.cookie);
+
+                // setCookie('jwt', document.cookie);
                 setHasCookie(true);
             }
         } catch (err) {

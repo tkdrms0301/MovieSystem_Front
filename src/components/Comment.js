@@ -1,6 +1,6 @@
 import axios from 'axios';
-import { useEffect, useState } from 'react';
-import { Link, useLocation, Navigate } from 'react-router-dom';
+import { useState } from 'react';
+import { useLocation } from 'react-router-dom';
 
 function commentModifyButton(memberId, commentContentID) {
     var target = document.getElementsByClassName('comment_modify_button');
@@ -17,9 +17,9 @@ function commentModifyButton(memberId, commentContentID) {
     }
 }
 
-function Comment({ commentContent, commentModifyWrite, commentWriteNone, index }) {
+function Comment({ cookies, commentContent, commentModifyWrite, commentWriteNone, index }) {
     //이것만 변경하면 다른것들 수정버튼 사용불가능
-    const memberId = '62a19a4f8383c2dba4b379fa';
+    const memberId = cookies['jwt'];
     const strDate = String(commentContent.date);
     const date = strDate.split('T');
     const search = useLocation().search;
@@ -29,6 +29,8 @@ function Comment({ commentContent, commentModifyWrite, commentWriteNone, index }
     const [modifyComment, setModifyComment] = useState('');
 
     const onClick = (event) => {
+        console.log(commentContent.member);
+
         axios
             .put(
                 'http://localhost:8080/' +
@@ -36,9 +38,9 @@ function Comment({ commentContent, commentModifyWrite, commentWriteNone, index }
                     '/comment/' +
                     commentContent._id +
                     '/' +
-                    memberId,
+                    commentContent.member._id,
                 {
-                    recommandMember: '62a19a4f8383c2dba4b379fa',
+                    recommandMember: memberId,
                     recommandNum: commentContent.recommandNum + 1,
                 },
             )

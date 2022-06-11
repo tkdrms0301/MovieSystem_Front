@@ -9,6 +9,7 @@
     height: 498px;
     background-color: #000;
     border-top: 2px solid #fb4357;
+    border-bottom: 2px solid #fb4357;
 }
 
 .baner .contents .video_wrap {
@@ -127,6 +128,7 @@
 
 .movieChartList .movieChart_wrap .movieInfo_wrap .movieName {
     display: block;
+    overflow: hidden;
     flex-basis: 100%;
     font-size: 18px;
     margin-top: 14px;
@@ -379,4 +381,34 @@
     background: rgba(255, 255, 255, 0.8)
         url(https://img.cgv.co.kr/R2014/images/common/ico/arrowL.png) center/9px 13px scroll
         no-repeat;
+}
+
+@media (max-width: 1000px) {
+    .baner {
+        display: none;
+    }
+
+    #container .contents {
+        width: 470px;
+        height: 640px;
+        position: relative;
+    }
+
+    .movieChartList {
+        position: static;
+    }
+
+    .movieChartList .movieChart_wrap {
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+
+    .movieChartList_wrap {
+        flex-wrap: wrap;
+        flex-direction: row;
+    }
+
+    .movieChartList .nextBtn {
+        top: 25%;
+    }
 }
