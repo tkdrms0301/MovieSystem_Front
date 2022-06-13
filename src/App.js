@@ -19,10 +19,12 @@ function App() {
 
     useEffect(() => {
         if (cookies['jwt'] !== undefined) setHasCookie(true);
-    });
+    }, [setHasCookie]);
 
     return (
         <div className="root">
+            {console.log('cookie 초기값 : ' + cookies['jwt'])}
+            {console.log('App 호출됨!')}
             <Router>
                 <HomeLayout
                     cookies={cookies}

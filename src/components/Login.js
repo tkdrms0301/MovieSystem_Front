@@ -2,7 +2,6 @@ import '../css/Login.css';
 import { useState } from 'react';
 import axios from 'axios';
 import { Navigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
 
 export default function Login({ cookies, setCookie, hasCookie, setHasCookie }) {
     const [id, setId] = useState('');
@@ -38,10 +37,8 @@ export default function Login({ cookies, setCookie, hasCookie, setHasCookie }) {
             console.log(login.data);
             if (login.status === 200) {
                 alert('로그인 성공!');
-                console.log(login.cookie);
-
-                // setCookie('jwt', document.cookie);
-                setHasCookie(true);
+                setCookie('jwt', login.data);
+                setHasCookie(() => true);
             }
         } catch (err) {
             console.log(err.response.status);
@@ -87,7 +84,7 @@ export default function Login({ cookies, setCookie, hasCookie, setHasCookie }) {
                     <span>로그인</span>
                 </button>
             </form>
-            {hasCookie && <Navigate to="/" />}
+            {cookies['jwt'] !== undefined && <Navigate to="/" />}
         </div>
     );
 }

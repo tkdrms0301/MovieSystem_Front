@@ -30,7 +30,7 @@ function Comment({ cookies, commentContent, commentModifyWrite, commentWriteNone
 
     const onClick = (event) => {
         console.log(commentContent.member);
-
+        console.log('sdfasdfasdf' + memberId);
         axios
             .put(
                 'http://localhost:8080/' +

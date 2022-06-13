@@ -192,9 +192,6 @@ ul {
     .ad-partner {
         display: none;
     }
-    .cgvImeage {
-        display: none;
-    }
 
     .sidenav {
         display: flex;
@@ -242,5 +239,13 @@ ul {
         font-size: 50px;
         height: 100%;
         cursor: pointer;
+    }
+
+    .header_content .contents h1 {
+        height: 50px;
+    }
+
+    .nav {
+        top: 100px;
     }
 }
