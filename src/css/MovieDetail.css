@@ -75,6 +75,7 @@
 }
 
 .detaileView-ticketRate {
+    display: flex;
     font-weight: bold;
     color: rgb(77, 75, 75);
     padding-right: 4px;
@@ -83,6 +84,7 @@
 }
 
 .detaileView-grade {
+    display: flex;
     font-weight: bold;
     color: rgb(77, 75, 75);
 }
@@ -95,10 +97,15 @@
 }
 
 .detaileView-movie-info {
+    display: flex;
     margin-top: 5px;
     font-size: 15px;
     font-weight: bold;
     color: #6d6969;
+}
+
+.detaileView-open {
+    display: flex;
 }
 
 .detaileView-real-rating {
