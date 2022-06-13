@@ -95,7 +95,9 @@ function MovieDetail({ cookies }) {
                         setCheckComment(true);
                     });
                 })
-                .catch((err) => console.log(err));
+                .catch((err) => {
+                    console.log(err);
+                });
             window.alert(['등록 완료']);
             //window.location.reload();
         }

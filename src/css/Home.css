@@ -93,6 +93,7 @@
 
 .movieChartList_wrap {
     display: flex;
+    justify-content: center;
 }
 
 .movieChartList .movieChart_wrap {
@@ -330,7 +331,7 @@
 .event_wrap .event_list .event_list_wrap .event strong {
     display: block;
     margin-top: 15px;
-    font-size: 18px;
+    font-size: 16px;
 }
 
 .event_wrap .event_list .event_list_wrap .event span {
@@ -389,26 +390,22 @@
     }
 
     #container .contents {
-        width: 470px;
+        width: 620px;
         height: 640px;
         position: relative;
     }
 
-    .movieChartList {
-        position: static;
+    .movieChartList_wrap {
+        flex-wrap: wrap;
     }
 
     .movieChartList .movieChart_wrap {
         margin-top: 10px;
         margin-bottom: 10px;
+        flex-basis: 40%;
     }
 
-    .movieChartList_wrap {
-        flex-wrap: wrap;
-        flex-direction: row;
-    }
-
-    .movieChartList .nextBtn {
-        top: 25%;
+    .movieChartList .movieChart_wrap .movie_img {
+        margin: 0 auto;
     }
 }
