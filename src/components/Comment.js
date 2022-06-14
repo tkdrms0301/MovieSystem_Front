@@ -146,17 +146,19 @@ function Comment({ cookies, commentContent, commentModifyWrite, commentWriteNone
                         </span>
 
                         <span class="comment_grade">평점 : {commentContent?.grade}</span>
-                        <button
-                            class="comment_modify_button"
-                            id="comment_modify_button"
-                            onClick={() => {
-                                console.log(index);
-                                commentModifyWrite(index);
-                                commentWriteNone(0);
-                            }}
-                        >
-                            수정
-                        </button>
+                        {commentContent.member._id == memberId ? (
+                            <button
+                                class="comment_modify_button"
+                                id="comment_modify_button"
+                                onClick={() => {
+                                    console.log(index);
+                                    commentModifyWrite(index);
+                                    commentWriteNone(0);
+                                }}
+                            >
+                                수정
+                            </button>
+                        ) : null}
                     </div>
                 </div>
                 <div class="detaileView-Modify-comment">
