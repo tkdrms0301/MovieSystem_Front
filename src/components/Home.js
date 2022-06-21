@@ -125,9 +125,9 @@ export default function Home({ cookies }) {
                                                               src="https://img.cgv.co.kr/R2014/images/common/egg/eggGoldenegggreat.png"
                                                               alt="Golden Egg graet"
                                                           />
-                                                          {m.averageGrade}
+                                                          {m.averageGrade}점
                                                       </span>
-                                                      <span>{m.ticketingRate}</span>
+                                                      <span>{m.ticketingRate}%</span>
                                                   </div>
                                               </div>
                                           );

@@ -5,7 +5,7 @@ function Schedule({ movieSchedule }) {
         <li>
             <Link to={'/ticketing'}>
                 <em>{movieSchedule?.time}</em>
-                <span class="txt-lightblue">98석</span>
+                <span class="txt-lightblue">100석</span>
             </Link>
         </li>
     );

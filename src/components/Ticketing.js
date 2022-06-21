@@ -33,7 +33,7 @@ function Ticketing() {
                 for (var j = 0; j < acc.length; j++) {
                     if (this !== acc[j]) {
                         setTest(j);
-                        acc[j].style.backgroundColor = 'rgb(218, 216, 216)'; // 다른요소 선택 시 색 되돌리기
+                        acc[j].style.backgroundColor = '#f2f0e5'; // 다른요소 선택 시 색 되돌리기
                         acc[j].style.color = 'black';
 
                         select[0].style.backgroundColor = 'rgb(105, 57, 57)';
@@ -41,7 +41,7 @@ function Ticketing() {
                         select[0].style.cursor = 'auto';
 
                         for (var k = 0; k < time.length; k++) {
-                            time[k].style.backgroundColor = 'rgb(218, 216, 216)';
+                            time[k].style.backgroundColor = '#f2f0e5';
                             time[k].style.color = 'black';
                         }
                     }
@@ -71,7 +71,7 @@ function Ticketing() {
                     if (this !== acc[j]) {
                         console.log(j);
                         setTime(j);
-                        acc[j].style.backgroundColor = 'rgb(218, 216, 216)'; // 다른요소 선택 시 색 되돌리기
+                        acc[j].style.backgroundColor = '#f2f0e5'; // 다른요소 선택 시 색 되돌리기
                         acc[j].style.color = 'black';
                     }
                 }

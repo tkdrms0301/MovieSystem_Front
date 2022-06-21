@@ -36,7 +36,7 @@ function MovieContent({ movieContent, index }) {
                                 src="https://img.cgv.co.kr/R2014/images/common/egg/eggGoldeneggPreegg.png"
                                 alt="Golden Egg Preegg"
                             ></img>
-                            {movieContent.averageGrade}
+                            {movieContent.averageGrade}점
                         </span>
                     </div>
                 </div>

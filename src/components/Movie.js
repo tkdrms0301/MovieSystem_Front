@@ -93,6 +93,7 @@ function Movie() {
                         <ol>
                             <MovieContent movieContent={movieContent[6]} index={7}></MovieContent>
                             <MovieContent movieContent={movieContent[7]} index={8}></MovieContent>
+                            <li></li>
                         </ol>
                     </div>
                 ) : null}
